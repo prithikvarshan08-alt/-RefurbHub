@@ -1,17 +1,6 @@
 [build]
   command = "npm run build"
-  publish = ".netlify/functions-internal"
+  publish = "dist/client"
 
 [build.environment]
   NODE_VERSION = "22"
-
-[[plugins]]
-  package = "@netlify/plugin-nitro"
-
-[functions]
-  node_bundler = "esbuild"
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/server"
-  status = 200
