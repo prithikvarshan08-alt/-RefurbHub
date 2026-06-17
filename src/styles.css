@@ -1,0 +1,119 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-sale: var(--sale);
+  --color-discount: var(--discount);
+  --color-hero-from: var(--hero-from);
+  --color-hero-to: var(--hero-to);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.19 0.03 260);
+  --foreground: oklch(0.98 0.005 250);
+  --card: oklch(0.22 0.035 262);
+  --card-foreground: oklch(0.98 0.005 250);
+  --popover: oklch(0.22 0.035 262);
+  --popover-foreground: oklch(0.98 0.005 250);
+  --primary: oklch(0.62 0.24 290);
+  --primary-foreground: oklch(0.99 0.005 250);
+  --secondary: oklch(0.27 0.035 262);
+  --secondary-foreground: oklch(0.98 0.005 250);
+  --muted: oklch(0.27 0.035 262);
+  --muted-foreground: oklch(0.72 0.02 255);
+  --accent: oklch(0.3 0.04 262);
+  --accent-foreground: oklch(0.98 0.005 250);
+  --destructive: oklch(0.65 0.24 25);
+  --destructive-foreground: oklch(0.99 0.005 250);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.62 0.24 290);
+  --sale: oklch(0.65 0.18 145);
+  --discount: oklch(0.72 0.2 50);
+  --hero-from: oklch(0.55 0.27 290);
+  --hero-to: oklch(0.7 0.13 195);
+}
+
+.dark {
+  --background: oklch(0.19 0.03 260);
+  --foreground: oklch(0.98 0.005 250);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { color-scheme: dark; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .hero-gradient {
+    background-image: linear-gradient(120deg, #5b2df0 0%, #6d3ff0 35%, #2c8a96 75%, #0ea5a4 100%);
+  }
+  .hero-shimmer::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: shimmer 6s linear infinite;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .card-hover {
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -18px rgba(124, 77, 255, 0.45);
+    border-color: rgba(124, 77, 255, 0.35);
+  }
+  .pill-active {
+    background: linear-gradient(135deg, #7c4dff, #5b2df0);
+    box-shadow: 0 0 0 1px rgba(124,77,255,0.5), 0 8px 24px -8px rgba(124,77,255,0.7);
+    color: white;
+  }
+  .focus-ring:focus-visible {
+    outline: 2px solid #7c4dff;
+    outline-offset: 2px;
+  }
+}
