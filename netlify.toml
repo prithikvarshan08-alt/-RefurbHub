@@ -1,6 +1,14 @@
 [build]
   command = "npm run build"
-  publish = "dist/client"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Send all non-asset requests to the Nitro server function (SSR).
+# Static assets in /assets/* are served directly from the publish dir.
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions-internal/server/server.mjs"
+  status = 200
+  force = false
