@@ -6,9 +6,9 @@
   NODE_VERSION = "22"
 
 # Send all non-asset requests to the Nitro server function (SSR).
-# Static assets in /assets/* are served directly from the publish dir.
+# The function is built into .netlify/functions-internal/ but at runtime
+# Netlify exposes it under /.netlify/functions/<name>.
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions-internal/server/server.mjs"
+  to = "/.netlify/functions/server"
   status = 200
-  force = false
